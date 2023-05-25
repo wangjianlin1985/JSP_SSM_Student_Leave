@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxxt.mapper.THolidayMapper" >
+  <resultMap id="BaseResultMap" type="com.jxxt.entity.THoliday" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="stu_id" property="stuId" jdbcType="INTEGER" />
+    <result column="tea_id" property="teaId" jdbcType="INTEGER" />
+    <result column="begin_time" property="beginTime" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="VARCHAR" />
+    <result column="day_num" property="dayNum" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="aduit_name" property="aduitName" jdbcType="VARCHAR" />
+    <result column="stu_name" property="stuName" jdbcType="VARCHAR" />
+    <result column="class_name" property="className" jdbcType="VARCHAR" />
+    <result column="profession_name" property="professionName" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <sql id="Base_Column_List" >
+    h.id, h.stu_id, h.tea_id, h.begin_time, h.end_time, h.day_num, h.content, h.status, h.aduit_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_holiday
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="findPage" resultMap="BaseResultMap" >
+   
+    SELECT  <include refid="Base_Column_List" />,s.`stu_name`,c.`class_name`,p.`profession_name` FROM t_holiday h
+	LEFT JOIN t_student s ON h.`stu_id` = s.`id`
+	LEFT JOIN t_class c ON c.`id` = s.`class_id`
+	LEFT JOIN t_profession p ON p.`id` = s.`profession_id`
+	<where>
+		<if test="stuId !=null and stuId !=0">
+		  and h.stu_id = ${stuId}
+		</if>
+		<if test="status !=null and status !=0">
+		  and h.status = ${status}
+		</if>
+	</where>
+   
+  </select>
+  
+  
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_holiday
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jxxt.entity.THoliday" >
+    insert into t_holiday (id, stu_id, tea_id, 
+      begin_time, end_time, day_num, 
+      content, status, aduit_name
+      )
+    values (#{id,jdbcType=INTEGER}, #{stuId,jdbcType=INTEGER}, #{teaId,jdbcType=INTEGER}, 
+      #{beginTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{dayNum,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{aduitName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jxxt.entity.THoliday" >
+    insert into t_holiday
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stuId != null" >
+        stu_id,
+      </if>
+      <if test="teaId != null" >
+        tea_id,
+      </if>
+      <if test="beginTime != null" >
+        begin_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="dayNum != null" >
+        day_num,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="aduitName != null" >
+        aduit_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="stuId != null" >
+        #{stuId,jdbcType=INTEGER},
+      </if>
+      <if test="teaId != null" >
+        #{teaId,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="dayNum != null" >
+        #{dayNum,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="aduitName != null" >
+        #{aduitName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxxt.entity.THoliday" >
+    update t_holiday
+    <set >
+      <if test="stuId != null" >
+        stu_id = #{stuId,jdbcType=INTEGER},
+      </if>
+      <if test="teaId != null" >
+        tea_id = #{teaId,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null" >
+        begin_time = #{beginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="dayNum != null" >
+        day_num = #{dayNum,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="aduitName != null" >
+        aduit_name = #{aduitName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jxxt.entity.THoliday" >
+    update t_holiday
+    set stu_id = #{stuId,jdbcType=INTEGER},
+      tea_id = #{teaId,jdbcType=INTEGER},
+      begin_time = #{beginTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      day_num = #{dayNum,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      aduit_name = #{aduitName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

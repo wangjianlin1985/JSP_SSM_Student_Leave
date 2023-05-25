@@ -1,0 +1,17 @@
+package com.jxxt.mapper;
+
+import com.jxxt.entity.TRoom;
+
+public interface TRoomMapper {
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(TRoom record);
+
+    int insertSelective(TRoom record);
+
+    TRoom selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(TRoom record);
+
+    int updateByPrimaryKey(TRoom record);
+}

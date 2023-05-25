@@ -1,0 +1,17 @@
+package com.jxxt.mapper;
+
+import com.jxxt.entity.TTerm;
+
+public interface TTermMapper {
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(TTerm record);
+
+    int insertSelective(TTerm record);
+
+    TTerm selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(TTerm record);
+
+    int updateByPrimaryKey(TTerm record);
+}

@@ -1,0 +1,17 @@
+package com.jxxt.mapper;
+
+import com.jxxt.entity.TMedicinal;
+
+public interface TMedicinalMapper {
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(TMedicinal record);
+
+    int insertSelective(TMedicinal record);
+
+    TMedicinal selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(TMedicinal record);
+
+    int updateByPrimaryKey(TMedicinal record);
+}

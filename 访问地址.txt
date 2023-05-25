@@ -1,0 +1,5 @@
+http://localhost:8080/stusys/view/index.jsp
+
+管理员: admin   123456
+老师 001853   123456
+学生 233501  123456

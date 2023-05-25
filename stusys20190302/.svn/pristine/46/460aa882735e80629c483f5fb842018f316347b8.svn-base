@@ -1,0 +1,91 @@
+package com.jxxt.controller;
+
+import java.io.IOException;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.jxxt.common.utils.ExcelReader;
+import com.jxxt.controller.tools.Tools;
+import com.jxxt.entity.TLogin;
+import com.jxxt.entity.TMedicinal;
+import com.jxxt.mapper.TMedicinalMapper;
+
+
+
+@Controller
+@RequestMapping ( "/mechine" )
+public class MMechineController extends Tools{
+    /**
+     * 日志系统
+     */
+	
+
+    @Autowired
+    TMedicinalMapper mechineMapper;
+
+  
+    
+	
+	
+	
+	
+	@ResponseBody
+    @RequestMapping(value="exportExcel")
+	public void  adminLogin( @RequestParam(value="filename") MultipartFile file, TLogin tuser,HttpSession session,HttpServletRequest request){
+		ExcelReader excelReader = new ExcelReader();
+		 Map<Integer, String> map;
+		try {
+			map = excelReader.readExcelContent(file.getInputStream());
+			 System.out.println("获得Excel表格的内容:");
+	         for (int i = 1; i <= map.size(); i++) {
+	             System.out.println(map.get(i));
+	            String strarr[]= map.get(i).split("---");
+	            TMedicinal tm=  new TMedicinal();
+	           tm.setCommonName(strarr[1]);
+	           tm.setManufacturer(strarr[2]);
+	           tm.setPinyinCode(strarr[3]);
+	           tm.setDosage(strarr[4]);
+	           tm.setStatus(strarr[5]);
+	           tm.setMedicineType(strarr[6]);
+	           tm.setPackingUnit(strarr[7]);
+	           tm.setRetailPrice(strarr[8]);
+	           tm.setCostPrice(strarr[9]);
+	           tm.setDiscountPrice(strarr[10]);
+	           tm.setUseType(strarr[11]);
+	           tm.setInstructions(strarr[12]);
+	           tm.setProductName(strarr[13]);
+	           tm.setEnglishName(strarr[14]);
+	           tm.setMedicineWords(strarr[15]);
+	           tm.setChinaEnglish(strarr[16]);
+	           mechineMapper.insertSelective(tm);
+	            /*for (String string : strarr) {
+					System.out.println(string);
+					
+				}*/
+	         }
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+	}
+	
+    @RequestMapping(value="mechineHtml")
+   	public String getMainPage(TLogin tuser,HttpSession session,HttpServletRequest request){
+   		
+     
+   		return "mechine";
+   	}
+
+	
+}

@@ -1,0 +1,17 @@
+package com.jxxt.mapper;
+
+import com.jxxt.entity.TProfession;
+
+public interface TProfessionMapper {
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(TProfession record);
+
+    int insertSelective(TProfession record);
+
+    TProfession selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(TProfession record);
+
+    int updateByPrimaryKey(TProfession record);
+}

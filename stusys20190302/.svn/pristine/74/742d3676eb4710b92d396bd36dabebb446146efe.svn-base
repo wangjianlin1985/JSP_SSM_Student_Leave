@@ -1,0 +1,20 @@
+package com.jxxt.mapper;
+
+import com.jxxt.entity.TStudent;
+import com.jxxt.entity.TTeacher;
+
+public interface TTeacherMapper {
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(TTeacher record);
+
+    int insertSelective(TTeacher record);
+
+    TTeacher selectByPrimaryKey(Integer id);
+    
+    TTeacher selectTeaLogin(String teaNo);
+
+    int updateByPrimaryKeySelective(TTeacher record);
+
+    int updateByPrimaryKey(TTeacher record);
+}

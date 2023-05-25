@@ -1,0 +1,4 @@
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://111.231.71.83:3306/studemo?useUnicode=true&amp;characterEncoding=utf8 
+jdbc.username=lhz
+jdbc.password=123456

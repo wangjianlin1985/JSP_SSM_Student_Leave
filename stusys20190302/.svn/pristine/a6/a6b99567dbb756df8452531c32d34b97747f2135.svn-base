@@ -1,0 +1,17 @@
+package com.jxxt.mapper;
+
+import com.jxxt.entity.TSerie;
+
+public interface TSerieMapper {
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(TSerie record);
+
+    int insertSelective(TSerie record);
+
+    TSerie selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(TSerie record);
+
+    int updateByPrimaryKey(TSerie record);
+}

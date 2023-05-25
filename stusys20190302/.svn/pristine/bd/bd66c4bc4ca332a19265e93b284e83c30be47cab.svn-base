@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxxt.mapper.TMedicinalMapper" >
+  <resultMap id="BaseResultMap" type="com.jxxt.entity.TMedicinal" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="common_name" property="commonName" jdbcType="VARCHAR" />
+    <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="pinyin_code" property="pinyinCode" jdbcType="VARCHAR" />
+    <result column="dosage" property="dosage" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="medicine_type" property="medicineType" jdbcType="VARCHAR" />
+    <result column="packing_unit" property="packingUnit" jdbcType="VARCHAR" />
+    <result column="retail_price" property="retailPrice" jdbcType="VARCHAR" />
+    <result column="cost_price" property="costPrice" jdbcType="VARCHAR" />
+    <result column="discount_price" property="discountPrice" jdbcType="VARCHAR" />
+    <result column="use_type" property="useType" jdbcType="VARCHAR" />
+    <result column="instructions" property="instructions" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="English_name" property="englishName" jdbcType="VARCHAR" />
+    <result column="medicine_words" property="medicineWords" jdbcType="VARCHAR" />
+    <result column="china_english" property="chinaEnglish" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, common_name, manufacturer, pinyin_code, dosage, status, medicine_type, packing_unit, 
+    retail_price, cost_price, discount_price, use_type, instructions, product_name, English_name, 
+    medicine_words, china_english
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_medicinal
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_medicinal
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jxxt.entity.TMedicinal" >
+    insert into t_medicinal (id, common_name, manufacturer, 
+      pinyin_code, dosage, status, 
+      medicine_type, packing_unit, retail_price, 
+      cost_price, discount_price, use_type, 
+      instructions, product_name, English_name, 
+      medicine_words, china_english)
+    values (#{id,jdbcType=INTEGER}, #{commonName,jdbcType=VARCHAR}, #{manufacturer,jdbcType=VARCHAR}, 
+      #{pinyinCode,jdbcType=VARCHAR}, #{dosage,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
+      #{medicineType,jdbcType=VARCHAR}, #{packingUnit,jdbcType=VARCHAR}, #{retailPrice,jdbcType=VARCHAR}, 
+      #{costPrice,jdbcType=VARCHAR}, #{discountPrice,jdbcType=VARCHAR}, #{useType,jdbcType=VARCHAR}, 
+      #{instructions,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{englishName,jdbcType=VARCHAR}, 
+      #{medicineWords,jdbcType=VARCHAR}, #{chinaEnglish,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jxxt.entity.TMedicinal" >
+    insert into t_medicinal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="commonName != null" >
+        common_name,
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer,
+      </if>
+      <if test="pinyinCode != null" >
+        pinyin_code,
+      </if>
+      <if test="dosage != null" >
+        dosage,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="medicineType != null" >
+        medicine_type,
+      </if>
+      <if test="packingUnit != null" >
+        packing_unit,
+      </if>
+      <if test="retailPrice != null" >
+        retail_price,
+      </if>
+      <if test="costPrice != null" >
+        cost_price,
+      </if>
+      <if test="discountPrice != null" >
+        discount_price,
+      </if>
+      <if test="useType != null" >
+        use_type,
+      </if>
+      <if test="instructions != null" >
+        instructions,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="englishName != null" >
+        English_name,
+      </if>
+      <if test="medicineWords != null" >
+        medicine_words,
+      </if>
+      <if test="chinaEnglish != null" >
+        china_english,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="commonName != null" >
+        #{commonName,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyinCode != null" >
+        #{pinyinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dosage != null" >
+        #{dosage,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="medicineType != null" >
+        #{medicineType,jdbcType=VARCHAR},
+      </if>
+      <if test="packingUnit != null" >
+        #{packingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="retailPrice != null" >
+        #{retailPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="costPrice != null" >
+        #{costPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="discountPrice != null" >
+        #{discountPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="useType != null" >
+        #{useType,jdbcType=VARCHAR},
+      </if>
+      <if test="instructions != null" >
+        #{instructions,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="englishName != null" >
+        #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineWords != null" >
+        #{medicineWords,jdbcType=VARCHAR},
+      </if>
+      <if test="chinaEnglish != null" >
+        #{chinaEnglish,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxxt.entity.TMedicinal" >
+    update t_medicinal
+    <set >
+      <if test="commonName != null" >
+        common_name = #{commonName,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyinCode != null" >
+        pinyin_code = #{pinyinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dosage != null" >
+        dosage = #{dosage,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="medicineType != null" >
+        medicine_type = #{medicineType,jdbcType=VARCHAR},
+      </if>
+      <if test="packingUnit != null" >
+        packing_unit = #{packingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="retailPrice != null" >
+        retail_price = #{retailPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="costPrice != null" >
+        cost_price = #{costPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="discountPrice != null" >
+        discount_price = #{discountPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="useType != null" >
+        use_type = #{useType,jdbcType=VARCHAR},
+      </if>
+      <if test="instructions != null" >
+        instructions = #{instructions,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="englishName != null" >
+        English_name = #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineWords != null" >
+        medicine_words = #{medicineWords,jdbcType=VARCHAR},
+      </if>
+      <if test="chinaEnglish != null" >
+        china_english = #{chinaEnglish,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jxxt.entity.TMedicinal" >
+    update t_medicinal
+    set common_name = #{commonName,jdbcType=VARCHAR},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      pinyin_code = #{pinyinCode,jdbcType=VARCHAR},
+      dosage = #{dosage,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      medicine_type = #{medicineType,jdbcType=VARCHAR},
+      packing_unit = #{packingUnit,jdbcType=VARCHAR},
+      retail_price = #{retailPrice,jdbcType=VARCHAR},
+      cost_price = #{costPrice,jdbcType=VARCHAR},
+      discount_price = #{discountPrice,jdbcType=VARCHAR},
+      use_type = #{useType,jdbcType=VARCHAR},
+      instructions = #{instructions,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      English_name = #{englishName,jdbcType=VARCHAR},
+      medicine_words = #{medicineWords,jdbcType=VARCHAR},
+      china_english = #{chinaEnglish,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
